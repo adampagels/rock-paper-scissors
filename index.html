@@ -2,37 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>Rock Paper Scissors</title>
   </head>
   <body>
     <script>
-      let number = Math.floor(Math.random() * 10 + 1);
       let playerScore = 0;
       let computerScore = 0;
+      let playerSelection;
 
       function computerPlay() {
-        if (number <= 4) {
+        let randomNumber = Math.floor(Math.random() * 100 + 1);
+        console.log(randomNumber);
+        if (randomNumber <= 40) {
           return 'Rock';
-        } else if (number > 4 && number < 8) {
+        } else if (randomNumber > 40 && randomNumber < 80) {
           return 'Paper';
-        } else if (number => 8 || number == 10) {
+        } else if (randomNumber => 80 || randomNumber == 100) {
           return 'Scissors';
         }
       }
 
-      let computerSelection = computerPlay();
-
-      function playRound(computerSelection) {
-        let playerSelection = prompt('Choose your weapon', '');
+      function playRound(playerSelection, computerSelection) {
         if (playerSelection === 'rock' && computerSelection == 'Paper') {
           console.log('Paper covers rock. Computer wins!');
-          ++computerScore;
+          computerScore += 1;
         } else if (
           playerSelection == 'rock' &&
           computerSelection == 'Scissors'
         ) {
           console.log('Rock smashes scissors. You win!');
-          ++playerScore;
+          playerScore += 1;
         } else if (playerSelection == 'rock' && computerSelection == 'Rock') {
           console.log('Tie! Rock shall never kill rock. Play again.');
         } else if (
@@ -47,16 +46,16 @@
           computerSelection == 'Scissors'
         ) {
           console.log('Scissors cut paper. Computer wins!');
-          ++computerScore;
+          computerScore += 1;
         } else if (playerSelection == 'paper' && computerSelection == 'Rock') {
           console.log('Paper covers rock. You win!');
-          ++playerScore;
+          playerScore += 1;
         } else if (
           playerSelection === 'scissors' &&
           computerSelection == 'Paper'
         ) {
           console.log('Scissors cut paper. You win!');
-          ++playerScore;
+          playerScore += 1;
         } else if (
           playerSelection == 'scissors' &&
           computerSelection == 'Scissors'
@@ -69,11 +68,32 @@
           computerSelection == 'Rock'
         ) {
           console.log('Rock smashes scissors. Computer wins!');
-          ++computerScore;
+          computerScore += 1;
         }
       }
 
-      playRound(computerSelection);
+      function gameOver() {
+        if (playerScore > computerScore) {
+          console.log(playerScore, computerScore);
+          console.log('YOU WIN!');
+        } else if (computerScore > playerScore) {
+          console.log(playerScore, computerScore);
+          console.log('YOU LOSE! PLAY AGAIN.');
+        } else {
+          console.log(playerScore, computerScore);
+          console.log("IT'S A DRAW!");
+        }
+      }
+
+      function game() {
+        for (i = 0; i < 5; i++) {
+          let computerSelection = computerPlay();
+          console.log(playerScore, computerScore);
+          let playerSelection = prompt('Choose your weapon', '');
+          playRound(playerSelection, computerSelection);
+        }
+        gameOver();
+      }
     </script>
   </body>
 </html>
