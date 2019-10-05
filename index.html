@@ -12,7 +12,6 @@
 
       function computerPlay() {
         let randomNumber = Math.floor(Math.random() * 100 + 1);
-        console.log(randomNumber);
         if (randomNumber <= 40) {
           return 'Rock';
         } else if (randomNumber > 40 && randomNumber < 80) {
@@ -89,7 +88,8 @@
         for (i = 0; i < 5; i++) {
           let computerSelection = computerPlay();
           console.log(playerScore, computerScore);
-          let playerSelection = prompt('Choose your weapon', '');
+          let promptAnswer = prompt('Choose your weapon', '');
+          playerSelection = promptAnswer.toLowerCase();
           playRound(playerSelection, computerSelection);
         }
         gameOver();
