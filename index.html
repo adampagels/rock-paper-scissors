@@ -5,6 +5,7 @@
     <title>Rock Paper Scissors</title>
   </head>
   <body>
+    <div id="container"></div>
     <script>
       let playerScore = 0;
       let computerScore = 0;
@@ -71,7 +72,7 @@
         }
       }
 
-      function gameOver() {
+      function displayGameOver() {
         if (playerScore == 5) {
           console.log('YOU WIN!');
           playerScore = 0;
@@ -85,18 +86,58 @@
         }
       }
 
-      function game() {
-        for (i = 0; i < 5; i++) {
-          let computerSelection = computerPlay();
-          console.log(playerScore, computerScore);
-          let promptAnswer = prompt('Choose your weapon', '');
-          playerSelection = promptAnswer.toLowerCase();
-          playRound(playerSelection, computerSelection);
-        }
-        gameOver();
-      }
+      // function game() {
+      //   for (i = 0; i < 5; i++) {
+      //     let computerSelection = computerPlay();
+      //     console.log(playerScore, computerScore);
+      //     let promptAnswer = prompt('Choose your weapon', '');
+      //     playerSelection = promptAnswer.toLowerCase();
+      //     playRound(playerSelection, computerSelection);
+      //   }
+      //   gameOver();
+      // }
 
-      game();
+      const container = document.querySelector('#container');
+
+      const buttonList = document.createElement('div');
+      container.appendChild(buttonList);
+
+      let rockButton = document.createElement('button');
+      rockButton.textContent = 'Rock';
+      buttonList.appendChild(rockButton);
+      rockButton.addEventListener('click', () => {
+        playerSelection = 'rock';
+        playRound(playerSelection, computerSelection);
+        console.log(computerSelection);
+        console.log(playerSelection);
+        console.log(playerScore, computerScore);
+        gameOver();
+      });
+
+      let paperButton = document.createElement('button');
+      paperButton.textContent = 'Paper';
+      buttonList.appendChild(paperButton);
+      paperButton.addEventListener('click', () => {
+        computerPlay();
+        playerSelection = 'paper';
+        playRound(playerSelection, computerSelection);
+        console.log(computerSelection);
+        console.log(playerSelection);
+        console.log(playerScore, computerScore);
+        gameOver();
+      });
+
+      let scissorsButton = document.createElement('button');
+      scissorsButton.textContent = 'Scissors';
+      buttonList.appendChild(scissorsButton);
+      scissorsButton.addEventListener('click', () => {
+        playerSelection = 'scissors';
+        playRound(playerSelection, computerSelection);
+        console.log(computerSelection);
+        console.log(playerSelection);
+        console.log(playerScore, computerScore);
+        gameOver();
+      });
     </script>
   </body>
 </html>
