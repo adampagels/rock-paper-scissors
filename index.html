@@ -72,15 +72,16 @@
       }
 
       function gameOver() {
-        if (playerScore > computerScore) {
-          console.log(playerScore, computerScore);
+        if (playerScore == 5) {
           console.log('YOU WIN!');
-        } else if (computerScore > playerScore) {
-          console.log(playerScore, computerScore);
+          playerScore = 0;
+          computerScore = 0;
+        } else if (computerScore == 5) {
           console.log('YOU LOSE! PLAY AGAIN.');
+          playerScore = 0;
+          computerScore = 0;
         } else {
-          console.log(playerScore, computerScore);
-          console.log("IT'S A DRAW!");
+          gameOver();
         }
       }
 
