@@ -10,7 +10,6 @@
       let playerScore = 0;
       let computerScore = 0;
       let playerSelection;
-      let computerSelection = computerPlay();
 
       function computerPlay() {
         let randomNumber = Math.floor(Math.random() * 100 + 1);
@@ -85,17 +84,6 @@
         }
       }
 
-      // function game() {
-      //   for (i = 0; i < 5; i++) {
-      //     let computerSelection = computerPlay();
-      //     console.log(playerScore, computerScore);
-      //     let promptAnswer = prompt('Choose your weapon', '');
-      //     playerSelection = promptAnswer.toLowerCase();
-      //     playRound(playerSelection, computerSelection);
-      //   }
-      //   gameOver();
-      // }
-
       const container = document.querySelector('#container');
 
       const buttonList = document.createElement('div');
@@ -105,6 +93,7 @@
       rockButton.textContent = 'Rock';
       buttonList.appendChild(rockButton);
       rockButton.addEventListener('click', () => {
+        let computerSelection = computerPlay();
         playerSelection = 'rock';
         playRound(playerSelection, computerSelection);
         console.log(computerSelection);
@@ -117,7 +106,7 @@
       paperButton.textContent = 'Paper';
       buttonList.appendChild(paperButton);
       paperButton.addEventListener('click', () => {
-        computerPlay();
+        let computerSelection = computerPlay();
         playerSelection = 'paper';
         playRound(playerSelection, computerSelection);
         console.log(computerSelection);
@@ -130,6 +119,7 @@
       scissorsButton.textContent = 'Scissors';
       buttonList.appendChild(scissorsButton);
       scissorsButton.addEventListener('click', () => {
+        let computerSelection = computerPlay();
         playerSelection = 'scissors';
         playRound(playerSelection, computerSelection);
         console.log(computerSelection);
