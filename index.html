@@ -101,18 +101,6 @@
         }
       }
 
-      function displayGameOver() {
-        if (playerScore == 5) {
-          console.log('YOU WIN!');
-          playerScore = 0;
-          computerScore = 0;
-        } else if (computerScore == 5) {
-          console.log('YOU LOSE! PLAY AGAIN.');
-          playerScore = 0;
-          computerScore = 0;
-        }
-      }
-
       const container = document.querySelector('#container');
 
       const buttonList = document.createElement('div');
@@ -123,6 +111,9 @@
 
       const winnerText = document.createElement('p');
       roundResults.appendChild(winnerText);
+
+      const totalScore = document.createElement('p');
+      roundResults.appendChild(totalScore);
 
       let rockButton = document.createElement('button');
       rockButton.textContent = 'Rock';
