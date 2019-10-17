@@ -12,63 +12,92 @@
       let playerSelection;
 
       function computerPlay() {
-        let randomNumber = Math.floor(Math.random() * 100 + 1);
-        if (randomNumber <= 40) {
+        let randomNumber = Math.floor(Math.random() * 100);
+        if (randomNumber <= 33) {
           return 'Rock';
-        } else if (randomNumber > 40 && randomNumber < 80) {
+        } else if (randomNumber > 33 && randomNumber <= 66) {
           return 'Paper';
-        } else if (randomNumber => 80 || randomNumber == 100) {
+        } else if (randomNumber => 67 || randomNumber == 100) {
           return 'Scissors';
         }
       }
 
       function playRound(playerSelection, computerSelection) {
         if (playerSelection === 'rock' && computerSelection == 'Paper') {
-          console.log('Paper covers rock. Computer wins!');
+          winnerText.textContent = 'Paper covers rock.';
           computerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection == 'rock' &&
           computerSelection == 'Scissors'
         ) {
-          console.log('Rock smashes scissors. You win!');
+          winnerText.textContent = 'Rock smashes scissors.';
           playerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (playerSelection == 'rock' && computerSelection == 'Rock') {
-          console.log('Tie! Rock shall never kill rock. Play again.');
+          winnerText.textContent = 'Tie! Rock shall never kill rock.';
+          computerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection === 'paper' &&
           computerSelection == 'Paper'
         ) {
-          console.log(
-            'Tie! Two pieces of papers are just a short story. Try again.'
-          );
+          winnerText.textContent =
+            'Tie! Two pieces of papers are just a short story.';
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection == 'paper' &&
           computerSelection == 'Scissors'
         ) {
-          console.log('Scissors cut paper. Computer wins!');
+          winnerText.textContent = 'Scissors cut paper.';
           computerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (playerSelection == 'paper' && computerSelection == 'Rock') {
-          console.log('Paper covers rock. You win!');
+          winnerText.textContent = 'Paper covers rock.';
           playerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection === 'scissors' &&
           computerSelection == 'Paper'
         ) {
-          console.log('Scissors cut paper. You win!');
+          winnerText.textContent = 'Scissors cut paper.';
           playerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection == 'scissors' &&
           computerSelection == 'Scissors'
         ) {
-          console.log(
-            'Two scissors just make "SHHHHIIIINNG" noises. Play again.'
-          );
+          winnerText.textContent =
+            'Tie! Two pairs of scissors just make "SHHHHIIIINNG" noises.';
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
         } else if (
           playerSelection == 'scissors' &&
           computerSelection == 'Rock'
         ) {
-          console.log('Rock smashes scissors. Computer wins!');
+          winnerText.textContent = 'Rock smashes scissors.';
           computerScore += 1;
+          totalScore.textContent =
+            `You: ${playerScore} ` + `Computer: ${computerScore}`;
+        }
+      }
+
+      function displayGameOver() {
+        if (playerScore == 5) {
+          winnerText.textContent = 'YOU WIN!';
+          playerScore = 0;
+          computerScore = 0;
+        } else if (computerScore == 5) {
+          winnerText.textContent = 'YOU LOSE! PLAY AGAIN.';
+          playerScore = 0;
+          computerScore = 0;
         }
       }
 
@@ -88,6 +117,12 @@
 
       const buttonList = document.createElement('div');
       container.appendChild(buttonList);
+
+      const roundResults = document.createElement('div');
+      container.appendChild(roundResults);
+
+      const winnerText = document.createElement('p');
+      roundResults.appendChild(winnerText);
 
       let rockButton = document.createElement('button');
       rockButton.textContent = 'Rock';
